@@ -1,27 +1,27 @@
-# MultipleAppNginx
+1. Create empty workspace
+ng new multipleAppNginx --create-application=false 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
+2. Generate 2 applications within the workspace
+ng g application firstApp
 
-## Development server
+ng g application secondApp
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+3. Update the base href in the index.html in the 2 applications
+Update the <base href> in the firstApp project to "/first/"
 
-## Code scaffolding
+Update the <base href> in the secondApp project to "/second/"
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+firstApp is deployed to /usr/share/nginx/html/first (Check Dockerfile)
 
-## Build
+secondApp is deployed to /usr/share/nginx/html/second (Check Dockerfile)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+4. Run "docker compose build" and "docker compose up". We have a single docker container and single nginx server.
 
-## Running unit tests
+nginx root directive location is /usr/share/nginx/html
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+5. Deployment details
 
-## Running end-to-end tests
+localhost:8082/first/ will take us to firstApp
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+localhost:8082/second/ will take us to secondApp
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

@@ -1,0 +1,9 @@
+services:
+   multiple-app-nginx-demo:
+     container_name: multiple-app-nginx-container
+     image: multiple-app-nginx
+     build:
+       context: .
+       dockerfile: Dockerfile
+     ports:
+       - 8082:80
